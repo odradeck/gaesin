@@ -1,0 +1,31 @@
+<h1>Listing boards</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Admin user</th>
+    <th>Read perm</th>
+    <th>Write perm</th>
+    <th>Group</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @boards.each do |board| %>
+  <tr>
+    <td><%= board.title %></td>
+    <td><%= board.admin_user_id %></td>
+    <td><%= board.read_perm %></td>
+    <td><%= board.write_perm %></td>
+    <td><%= board.group_id %></td>
+    <td><%= link_to 'Show', board %></td>
+    <td><%= link_to 'Edit', edit_board_path(board) %></td>
+    <td><%= link_to 'Destroy', board, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Board', new_board_path %>

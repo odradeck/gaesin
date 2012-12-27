@@ -1,11 +1,23 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
+gem 'bcrypt-ruby', '3.0.1'
+gem 'faker', '1.0.1'
+gem 'will_paginate', '3.0.3'
+gem 'bootstrap-will_paginate', '0.0.6'
+gem 'bootstrap-sass', '~> 2.2.1.1'
+gem 'redcarpet'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'simple_form'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+#gem 'oauth2'
 
 
 # Gems used only for assets and not required
