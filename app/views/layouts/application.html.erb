@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Protone" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "개신 - 개발은신속히" %></title>
     <%= csrf_meta_tags %>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -20,7 +20,7 @@
   </head>
   <body>
 
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
           <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
@@ -28,7 +28,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <%= link_to "Proton", root_path, id: "logo" %>
+          <%= link_to "개신", root_path, id: "logo" %>
           <div class="container nav-collapse">
           	<ul class="nav pull-right">
 				<li><%= link_to "Link1", '#'  %></li>
