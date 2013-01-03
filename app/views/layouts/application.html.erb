@@ -13,14 +13,35 @@
 
     <%= stylesheet_link_tag "application", :media => "all" %>
 
-    <link href="images/favicon.ico" rel="shortcut icon">
+    <link href="/favicon.png" rel="shortcut icon">
     <link href="images/apple-touch-icon.png" rel="apple-touch-icon">
     <link href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
     <link href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
   </head>
   <body>
-
-    <div class="navbar">
+	<div class="navbar navbar-fixed-top ">
+		 <div class="navbar-inner">
+		 <div class="container">
+			<script>$('.dropdown-toggle').dropdown()</script>
+				<a href="/" class='brand'><img src="/favicon.png">&nbsp;&nbsp;<b>개신</b><small>- 개발은 신속히</small></a>
+				<ul class="nav pull-right">
+					<% if user_signed_in? %>
+	  				<li><%= link_to('로그아웃', destroy_user_session_path, :method => :delete) %></li>
+	  				<li><%= link_to(current_user.name, edit_user_registration_path) %></li>
+	  					<% if current_user.admin? %>
+	  						<li><%= link_to "Admin", "#" %></li>
+	  					<% end %>
+					<% else %>
+		  				<li><a href="/users/auth/facebook"><img src="/facebook_20.png" width="20"></a></li>
+		  				<li> <%= link_to('로그인', new_user_session_path)  %></li>
+		  				<li> <%= link_to('회원가입', new_user_registration_path)  %> </li>
+	  				<% end %>
+	  			</ul>
+		</div>
+		</div>
+	</div>
+		
+    <div style="margin-top:55px;" class="navbar navbar-fixed-top  navbar-inverse">
       <div class="navbar-inner">
         <div class="container">
           <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
@@ -28,25 +49,29 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <%= link_to "개신", root_path, id: "logo" %>
+          
           <div class="container nav-collapse">
-          	<ul class="nav pull-right">
-				<li><%= link_to "Link1", '#'  %></li>
-
-				<li><%= link_to "About",    about_path %></li>
-				<li><%= link_to "Help",    help_path %></li>
-				<% if user_signed_in? %>
-  				<li><%= link_to('Out', destroy_user_session_path, :method => :delete) %></li>
-  				<li><%= link_to(current_user.name, edit_user_registration_path) %></li>
-  					<% if current_user.admin? %>
-  						<li><%= link_to "Admin", "#" %></li>
-  					<% end %>
-				<% else %>
-	  				<li><a href="/users/auth/facebook"><img src="/facebook_20.png" width="20"></a></li>
-	  				<li> <%= link_to('Sign-in', new_user_session_path)  %></li>
-	  				<li> <%= link_to('Sign-up', new_user_registration_path)  %> </li>
-  				<% end %>
-  			</ul>
+          	
+						
+				<ul class="nav">
+					<!--
+					<li class="dropdown">
+                      <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">드롭다운 <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                        <li><a tabindex="-1" href="about">서브1</a></li>
+                        <li><a tabindex="-1" href="help"서브2</a></li>
+                        <li><a tabindex="-1" href="#">서브3</a></li>
+                      </ul>
+                </li> -->
+                   	
+					<li><%= link_to "개판 (DEV-BOARD)".html_safe, '#'  %></li>
+					<li><%= link_to "삽질 (SAPZIL)", '#'  %></li>
+					<li><%= link_to "수업 (CLASS)", '#'  %></li>
+					<li><%= link_to "스페샬서비스 (SERVICE)", '#', :id=>"specialnav"  %></li>
+				</ul>
+			<ul class="nav pull-right">	
+				<li><%= link_to "개신?",    about_path %></li>
+ 			</ul>
 
           </div><!--/.nav-collapse -->
         </div>
