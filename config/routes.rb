@@ -21,7 +21,7 @@ Gaesin::Application.routes.draw do
   get "main_pages/help"
   get "main_pages/terms"
   
-  root :to => "main_pages#home"
+  #root :to => "main_pages#home"
   
   match '/users/auth/:service/callback' => 'services#create' 
   resources :services, :only => [:index, :create, :destroy]
