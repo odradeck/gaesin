@@ -10,4 +10,10 @@ class MainPagesController < ApplicationController
 
   def terms
   end
+  
+    def lectures
+  end
+  
+    def specialservice
+  end
 end

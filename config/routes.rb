@@ -20,6 +20,8 @@ Gaesin::Application.routes.draw do
   get "main_pages/about"
   get "main_pages/help"
   get "main_pages/terms"
+  get "main_pages/lectures"
+  get "main_pages/specialservice"
   
   root :to => "main_pages#home"
   
