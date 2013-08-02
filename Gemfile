@@ -17,7 +17,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
-#gem 'oauth2'
+gem 'cancan'
 
 
 # Gems used only for assets and not required

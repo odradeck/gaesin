@@ -21,7 +21,7 @@ Gaesin::Application.routes.draw do
   get "main_pages/help"
   get "main_pages/terms"
   get "main_pages/lectures"
-  get "main_pages/specialservice"
+  get "main_pages/mombang"
   
   root :to => "main_pages#home"
   
@@ -32,6 +32,7 @@ Gaesin::Application.routes.draw do
   
   match '/help', to: 'main_pages#help'
   match '/about', to: 'main_pages#about'
+  match '/mombang', to: 'main_pages#mombang'
   match '/terms', to: 'main_pages#terms'
   
 

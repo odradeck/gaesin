@@ -14,6 +14,6 @@ class MainPagesController < ApplicationController
     def lectures
   end
   
-    def specialservice
+    def mombang
   end
 end

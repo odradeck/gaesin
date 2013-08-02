@@ -32,10 +32,11 @@
 	  						<li><%= link_to "Admin", "#" %></li>
 	  					<% end %>
 					<% else %>
+          <!--
 		  				<li><a href="/users/auth/facebook"><img src="/facebook_20.png" width="20"></a></li>
 		  				<li> <%= link_to('로그인', new_user_session_path)  %></li>
 		  				<li> <%= link_to('회원가입', new_user_registration_path)  %> </li>
-	  				<% end %>
+	  				--><% end %>
 	  			</ul>
 		</div>
 		</div>
@@ -70,7 +71,7 @@
 					<li><%= link_to "부끄러운질문", '#'  %></li>
 				</ul>
 			<ul class="nav pull-right">
-				<li><%= link_to "몸빵캐피탈", '#',:id=>"specialnav" %></li>
+				<li><%= link_to "몸빵캐피탈", mombang_path,:id=>"specialnav" %></li>
 				<li><%= link_to "개신?",    about_path %></li>
  			</ul>
 
