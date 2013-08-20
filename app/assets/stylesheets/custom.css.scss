@@ -1,7 +1,11 @@
 /*@import "twitter/bootstrap/bootstrap";*/ 
 @import "bootstrap";
+@import "bootstrap-responsive";
 /*@import "twitter/bootstrap/bootstrap_variables";*/
 
+.container {
+          width: 800px !important;
+}
 
 $grayMediumLight: #eaeaea;
 
