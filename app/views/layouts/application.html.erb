@@ -19,25 +19,24 @@
     <link href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
   </head>
   <body>
-	<div class="navbar navbar-fixed-top ">
-		 <div class="navbar-inner">
-		 <div class="container">
-			<script>$('.dropdown-toggle').dropdown()</script>
+    
+	   <div class="navbar navbar-fixed-top">
+		  <div class="navbar-inner">
+        <div class="container">
 				<a href="/" class='brand'><img src="/favicon.png">&nbsp;&nbsp;<b>개신</b><small>- 개발은 신속히</small></a>
 				<ul class="nav pull-right">
 					<% if user_signed_in? %>
 	  				<li><%= link_to('로그아웃', destroy_user_session_path, :method => :delete) %></li>
 	  				<li><%= link_to(current_user.name, edit_user_registration_path) %></li>
-	  					<% if current_user.admin? %>
-	  						<li><%= link_to "Admin", "#" %></li>
-	  					<% end %>
+	  				<% if current_user.admin? %>
+	  				<li><%= link_to "Admin", "#" %></li>
+	  				<% end %>
 					<% else %>
-          <!--
 		  				<li><a href="/users/auth/facebook"><img src="/facebook_20.png" width="20"></a></li>
 		  				<li> <%= link_to('로그인', new_user_session_path)  %></li>
 		  				<li> <%= link_to('회원가입', new_user_registration_path)  %> </li>
-	  				--><% end %>
-	  			</ul>
+          <% end %>
+	  		</ul>
 		</div>
 		</div>
 	</div>
