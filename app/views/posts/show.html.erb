@@ -22,13 +22,9 @@
 
 <p>
   <b>Contents:</b>
-  <%= @post.contents %>
-  <hr>
-  <!-- %= Redcarpet.new(@post.contents).to_html % -->
-  <hr>
   <%= markdown @post.contents %>
 </p>
-
+<%= image_tag(@post.image_url) if @post.image? %>
 <p>
   <b>Addlink:</b>
   <%= @post.addlink %>

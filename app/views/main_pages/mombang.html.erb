@@ -1,3 +1,4 @@
+<div class="row-fluid">
 <div class="span10 offset1" style="margin-top:30px">
 <div class="page-header">
   <h1>몸빵캐피탈<br/><small>당신에게 필요한 것은 몇 푼의 돈이 아니라,<br/>당신의 이야기를 눈물 흘리며 들어줄 따뜻한 개발자입니다.</small></h1>
@@ -29,8 +30,8 @@
 		<tbody>
 		<tr>
 			<td><ul>
-				<li>시간내키거나 만들고 싶을 때 만듬</li>
-				<li>어려운건 아에 시작도 안함. 못함</li> 
+				<li>아무때나 만들고 싶을 때 만듬</li>
+				<li>어려운건 안함. 못함</li> 
 				<li>남는 서버가 있으면 운용도 해줄지도..</li>
 				<li>엄청 말도 많고 게으름</li>
 			</ul></td>
@@ -52,15 +53,68 @@
 			</td>
 		</tr>
 		<tr>
-			<td style="text-align:center"><%= link_to "신청하기", '#', :class=>'btn btn-primary',  data: { confirm: "죄송합니다. 지금은 바뻐요." } %>
+			<td style="text-align:center">
+				<a href="#apply1" role="button" class="btn btn-primary" data-toggle="modal">신청하기</a>
 			</td>
-			<td style="text-align:center"><%= link_to "신청하기", '#', :class=>'btn btn-primary',  data: { confirm: "죄송합니다. 아직입니." } %>
+			<td style="text-align:center">
+				<a href="#apply2" role="button" class="btn btn-primary" data-toggle="modal">신청하기</a>
 			</td>
-			<td style="text-align:center"><%= link_to "신청하기", '#', :class=>'btn btn-primary',  data: { confirm: "죄송합니다. 당신은 충분히 부자가 아니군요." } %>
+			<td style="text-align:center">
+				<a href="#apply3" role="button" class="btn btn-primary" data-toggle="modal">신청하기</a>
 			</td>
 		</tr>
 		</tbody>
 	</table>
 
 
+ 
+<!-- Modal -->
+<div id="apply1" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Free Tire 신청하기</h3>
+  </div>
+  <%= simple_form_for Contact.new do |f| %>
+  <div class="modal-body">
+    <%= f.input :name, :label=>"이름" %>
+    <%= f.input :email, :label=>"이메일" %>
+    <%= f.input :contact_type, :as => :hidden, :input_html => { :value => "mombang_apply" } %>
+    <%= f.input :body, :label=>"신청이유", :input_html => { :rows => 7 } %>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <%= f.button :submit, "신청하기", :class=>"btn btn-primary" %>
+  </div>
+  <%end%>
+</div>
+
+<div id="apply2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Business Tire 신청하기</h3>
+  </div>
+  <div class="modal-body">
+  	<h4>준비중입니다 </h4>
+  	죄송합니다.<br/> 아직은 책임지지 못합니다.
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
+
+<div id="apply3" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Enterprise Tire 신청하기</h3>
+  </div>
+  <div class="modal-body">
+  	<h4>앗 </h4>
+  	당신은 이런 서비스를 신청할 만큼, 충분한 부자가 아니군요!<br/>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
+
+</div>
 </div>

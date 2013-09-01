@@ -18,6 +18,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'cancan'
+gem 'carrierwave'
 
 
 # Gems used only for assets and not required

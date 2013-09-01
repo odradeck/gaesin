@@ -1,4 +1,6 @@
 Gaesin::Application.routes.draw do
+  resources :contacts
+
   resources :comments
 
   resources :b_categories

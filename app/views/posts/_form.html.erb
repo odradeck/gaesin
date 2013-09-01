@@ -1,4 +1,4 @@
-<%= simple_form_for(@post) do |f| %>
+<%= simple_form_for @post, defaults: { input_html: { :multipart=>true } } do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -7,6 +7,9 @@
     <%= f.input :b_category_id %>
     <%= f.input :title %>
     <%= f.input :contents %>
+    <%= image_tag(@post.image_url) if @post.image? %>
+    <%= f.file_field :image %>
+    <%= f.check_box :remove_image %>
     <%= f.input :addlink %>
     <%= f.input :isnotice %>
   </div>
