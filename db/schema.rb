@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130831231735) do
+ActiveRecord::Schema.define(:version => 20130908215848) do
 
   create_table "b_categories", :force => true do |t|
     t.string   "name"
@@ -22,11 +22,19 @@ ActiveRecord::Schema.define(:version => 20130831231735) do
   create_table "boards", :force => true do |t|
     t.string   "title"
     t.integer  "admin_user_id"
-    t.string   "read_perm"
-    t.string   "write_perm"
     t.integer  "group_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.boolean  "new_owner"
+    t.boolean  "show_owner"
+    t.boolean  "update_owner"
+    t.boolean  "new_group"
+    t.boolean  "show_group"
+    t.boolean  "update_group"
+    t.boolean  "new_public"
+    t.boolean  "show_public"
+    t.boolean  "update_public"
+    t.string   "board_type"
   end
 
   create_table "comments", :force => true do |t|
@@ -60,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20130831231735) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.string   "image"
+    t.boolean  "published"
   end
 
   create_table "services", :force => true do |t|
@@ -106,6 +115,7 @@ ActiveRecord::Schema.define(:version => 20130831231735) do
     t.integer  "point"
     t.string   "provider"
     t.string   "uid"
+    t.integer  "group_id"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
