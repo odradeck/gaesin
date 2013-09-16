@@ -1,15 +1,15 @@
 Gaesin::Application.routes.draw do
+
+
+  resources :questions
+
   resources :groups
-
   resources :contacts
+ 
+  resources :boards do
+    resources :posts
+  end
 
-  resources :comments
-
-  resources :b_categories
-
-  resources :posts
-
-  resources :boards
 
   #devise_for :users
   devise_for :users, :controllers => { :registrations => "registrations" }

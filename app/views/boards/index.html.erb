@@ -3,10 +3,7 @@
 <table>
   <tr>
     <th>Title</th>
-    <th>Admin user</th>
-    <th>Read perm</th>
-    <th>Write perm</th>
-    <th>Group</th>
+    <th>Board Type</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,10 +12,7 @@
 <% @boards.each do |board| %>
   <tr>
     <td><%= board.title %></td>
-    <td><%= board.admin_user_id %></td>
-    <td><%= board.read_perm %></td>
-    <td><%= board.write_perm %></td>
-    <td><%= board.group_id %></td>
+    <td><%= board.board_type %></td>
     <td><%= link_to 'Show', board %></td>
     <td><%= link_to 'Edit', edit_board_path(board) %></td>
     <td><%= link_to 'Destroy', board, confirm: 'Are you sure?', method: :delete %></td>

@@ -1,0 +1,1 @@
+ROLES = %w[admin moderator author member]

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130908215848) do
+ActiveRecord::Schema.define(:version => 20130916140359) do
 
   create_table "b_categories", :force => true do |t|
     t.string   "name"
@@ -25,15 +25,7 @@ ActiveRecord::Schema.define(:version => 20130908215848) do
     t.integer  "group_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-    t.boolean  "new_owner"
-    t.boolean  "show_owner"
-    t.boolean  "update_owner"
-    t.boolean  "new_group"
-    t.boolean  "show_group"
-    t.boolean  "update_group"
-    t.boolean  "new_public"
-    t.boolean  "show_public"
-    t.boolean  "update_public"
+    t.integer  "roles_mask"
     t.string   "board_type"
   end
 
@@ -57,6 +49,12 @@ ActiveRecord::Schema.define(:version => 20130908215848) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "posts", :force => true do |t|
     t.integer  "board_id"
     t.integer  "user_id"
@@ -65,10 +63,18 @@ ActiveRecord::Schema.define(:version => 20130908215848) do
     t.text     "contents"
     t.string   "addlink"
     t.boolean  "isnotice"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.string   "image"
-    t.boolean  "published"
+    t.boolean  "published",     :default => false
+  end
+
+  create_table "questions", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "contents"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "services", :force => true do |t|
@@ -115,7 +121,7 @@ ActiveRecord::Schema.define(:version => 20130908215848) do
     t.integer  "point"
     t.string   "provider"
     t.string   "uid"
-    t.integer  "group_id"
+    t.integer  "roles_mask"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

@@ -6,24 +6,10 @@
 </p>
 
 <p>
-  <b>Admin user:</b>
-  <%= @board.admin_user_id %>
-</p>
-
-<p>
   <b>Read perm:</b>
-  <%= @board.read_perm %>
+  <%= @board.roles %>
 </p>
 
-<p>
-  <b>Write perm:</b>
-  <%= @board.write_perm %>
-</p>
-
-<p>
-  <b>Group:</b>
-  <%= @board.group_id %>
-</p>
 
 
 <%= link_to 'Edit', edit_board_path(@board) %> |

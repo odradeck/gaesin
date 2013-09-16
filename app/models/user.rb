@@ -8,9 +8,25 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :password, :password_confirmation, :current_password
   attr_accessible :email, :password, :password_confirmation, :remember_me, :current_password
-  attr_accessible :uid, :name, :phone, :group_id
+  attr_accessible :uid, :name, :phone
   
   #for Oauth
   has_many :services, :dependent => :destroy
-  belongs_to :group
+  attr_accessible :roles
+
+  def roles=(roles)
+    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
+  end
+
+  def roles
+    ROLES.reject do |r|
+      ((roles_mask.to_i || 0) & 2**ROLES.index(r)).zero?
+    end
+  end
+
+  def is?(role)
+    roles.include?(role.to_s)
+  end
+
+
 end
