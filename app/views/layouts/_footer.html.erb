@@ -4,7 +4,31 @@
   </small>
   <nav>
     <ul>
-      <li><small><%= link_to "Contact", '#' %></small></li>
+      <li><small><a href="#contact_foot" role="button" data-toggle="modal">contact</a></small></li>
     </ul>
   </nav>
 </footer>
+
+<!-- Modal -->
+<div id="contact_foot" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">남기기</h3>
+  </div>
+  <%= simple_form_for @contact=Contact.new do |f| %>
+  <% if user_signed_in? %>
+  <% @contact.name = current_user.name %>
+  <% @contact.email = current_user.email %>
+  <% end %>
+  <div class="modal-body">
+    <%= f.input :name, :label=>"이름", :input_html=>{:class=>"input-block-level"} %>
+    <%= f.input :email, :label=>"이메일", :input_html=>{:class=>"input-block-level"} %>
+    <%= f.input :contact_type, :as => :hidden, :input_html => { :value => "contact_footer" } %>
+    <%= f.input :body, :label=>"남기고싶은 말씀", :input_html => { :rows => 7, :class=>"input-block-level" } %>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <%= f.button :submit, "등록", :class=>"btn btn-primary" %>
+  </div>
+  <%end%>
+</div>

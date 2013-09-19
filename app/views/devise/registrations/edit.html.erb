@@ -6,9 +6,13 @@
   <div class="form-inputs">
     <%= f.input :email, :label=>"이메일", :required => true, :autofocus => true %>
     <%= f.input :name,:label=>"이름", :required => true %>
-    <%= f.input :current_password, :label=>"현재비밀번호", :hint => "we need your current password to confirm your changes" %>
-    <%= f.input :password, :label=>"새로운비밀번호", :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
+    <div class="pull-right">
+    <button type="button" class="btn btn-inverse" data-toggle="collapse" data-target="#password">비밀번호 변경</button></div>
+<div id="password" class="collapse">
+    <%= f.input :current_password, :label=>"현재비밀번호"%>
+    <%= f.input :password, :label=>"새로운비밀번호", :autocomplete => "off", :required => false %>
     <%= f.input :password_confirmation, :label=>"새로운비밀번호확인", :required => false %>
+  </div>
     
     
   </div>

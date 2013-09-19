@@ -5,12 +5,11 @@ class RegistrationsController < Devise::RegistrationsController
     email_changed = @user.email != params[:user][:email]
     password_changed = !params[:user][:password].empty?
     
-     
-
     successfully_updated = if email_changed or password_changed
       @user.update_with_password(params[:user])
       #@user.update_without_password(params[:user])
     else
+      params[:user].delete(:current_password)
       @user.update_without_password(params[:user])
     end
 

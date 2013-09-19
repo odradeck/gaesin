@@ -1,6 +1,8 @@
 # coding : utf-8
 
 class ContactsController < ApplicationController
+ load_and_authorize_resource
+
   # GET /contacts
   # GET /contacts.json
   def index
@@ -51,7 +53,7 @@ class ContactsController < ApplicationController
           format.html { redirect_to mombang_path, notice: '서비스 신청이 완료되었습니다.' }
           format.json { render json: mombang_path, status: :created, location: @contact }
         else
-          format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
+          format.html { redirect_to root_path, notice: 'Contact was successfully created.' }
           format.json { render json: @contact, status: :created, location: @contact }
         end
       else
@@ -88,4 +90,6 @@ class ContactsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
 end

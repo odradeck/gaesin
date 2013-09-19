@@ -26,6 +26,7 @@ class Ability
       can :read, Post
       can :read, Board
       can :read, Comment
+      can :create, Contact
     
     
  

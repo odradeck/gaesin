@@ -74,12 +74,16 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Free Tire 신청하기</h3>
   </div>
-  <%= simple_form_for Contact.new do |f| %>
+   <%= simple_form_for @contact=Contact.new do |f| %>
+  <% if user_signed_in? %>
+  <% @contact.name = current_user.name %>
+  <% @contact.email = current_user.email %>
+  <% end %>
   <div class="modal-body">
-    <%= f.input :name, :label=>"이름" %>
-    <%= f.input :email, :label=>"이메일" %>
+    <%= f.input :name, :label=>"이름", :input_html=>{:class=>"input-block-level"} %>
+    <%= f.input :email, :label=>"이메일", :input_html=>{:class=>"input-block-level"} %>
     <%= f.input :contact_type, :as => :hidden, :input_html => { :value => "mombang_apply" } %>
-    <%= f.input :body, :label=>"신청이유", :input_html => { :rows => 7 } %>
+    <%= f.input :body, :label=>"신청이유", :input_html => { :rows => 7, :class=>"input-block-level" } %>
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
