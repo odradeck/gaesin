@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   has_many :services, :dependent => :destroy
   attr_accessible :roles
 
+  has_many :posts
+
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
   end

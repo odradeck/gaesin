@@ -1,35 +1,90 @@
-<h1>Listing posts</h1>
+<h1><%= @board.title %>
+    <% if @board.description %>
+    <br/><small> <%= @board.description %> </small>
+    <%end%>
+</h1>
 
-<table>
+
+<% if @board.board_type == 'general' %>
+<ul class="media-list">
+  <% @posts.each do |post| %>
+  <li class="media">
+    <a class="pull-left" href='<%=board_post_path(@board, post)%>'>
+      <img class="media-object" src='<%= post.image.thumb.url if post.image %>'></a>
+    <div class="media-body">
+      <h4 class="media-heading"><%= link_to post.title, board_post_path(@board, post) %> <small><%= "#{post.user.name} / #{post.created_at.strftime("%Y-%m-%d %H:%M")}" %></small></h4>
+      <%= truncate post.contents, :length=>300  %>
+     </div>
+  </li>
+  <%end%>
+</ul>
+
+<%elsif @board.board_type == 'gallery' %>
+<ul class="thumbnails">
+    <% @posts.each do |post| %>
+  <li class="span4">
+    <div class="thumbnail">
+        <a href='<%=board_post_path(@board, post)%>'>
+      <img src='<%= post.image.url if post.image%>' alt=""></a>
+      <h4><%= post.title %></h4>
+    </div>
+  </li>
+  <%end%>
+</ul>
+
+<%else %>
+<table class="table">
   <tr>
-    <th>Board</th>
-    <th>User</th>
-    <th>B category</th>
-    <th>Title</th>
-    <th>Contents</th>
-    <th>Addlink</th>
-    <th>Isnotice</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th width="10%">작성자</th>
+    <th width="20%">제목</th>
+    <th width="60%">내용</th>
+    <th width="10%"></th>
   </tr>
 
 <% @posts.each do |post| %>
   <tr>
-    <td><%= post.board_id %></td>
-    <td><%= post.user_id %></td>
-    <td><%= post.b_category_id %></td>
-    <td><%= post.title %></td>
-    <td><%= post.contents %></td>
-    <td><%= post.addlink %></td>
-    <td><%= post.isnotice %></td>
-    <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= post.user.name %></td>
+    <td><%= link_to post.title, board_post_path(@board, post) %></td>
+    <td><%= truncate post.contents, :length=>300 %></td>
+    <td>
+    <% if can? :modify, post %>
+    <%= link_to '수정', edit_board_post_path(@board, post) %>
+    <%= link_to '삭제', board_post_path(@board,post), confirm: 'Are you sure?', method: :delete %>
+    <%end%>
+    </td>
   </tr>
 <% end %>
 </table>
+<%end%>
+
+<% if @draft_posts and @draft_posts.count > 0 %>
+
+<h4> <%= @current_user.name %>님 작성중인 글 </h4>
+<table class="table">
+  <tr>
+    <th>제목</th>
+    <th>내용</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @draft_posts.each do |post| %>
+  <tr>
+      <td><%= link_to post.title, board_post_path(@board, post) %></td>
+    <td><%= post.contents %></td>
+    <td> <%= post.created_at.strftime("%Y-%m-%d %H:%M")%>
+    <td><% if can? :modify, post %>
+    <%= link_to '수정', edit_board_post_path(@board, post) %>
+    <%= link_to '삭제', board_post_path(@board,post), confirm: 'Are you sure?', method: :delete %>
+    <%end%></td>
+  </tr>
+<% end %>
+</table>
+<%end%>
 
 <br />
 
-<%= link_to 'New Post', new_post_path %>
+<% if can? :create, Post %>
+<%= link_to '새로운 글', new_board_post_path(@board) %>
+<% end %>

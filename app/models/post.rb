@@ -3,6 +3,9 @@ class Post < ActiveRecord::Base
   				:image, :remove_image, :published
   mount_uploader :image, ImageUploader
 
+  scope :is_published, where(published:true)
+  scope :is_draft, where(published:false)
   has_many :comments
   belongs_to :board
+  belongs_to :user
 end

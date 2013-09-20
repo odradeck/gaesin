@@ -24,8 +24,8 @@ class Ability
 
     #for anyone
       can :read, Post
-      can :read, Board
       can :read, Comment
+      can :read, Question
       can :create, Contact
     
     

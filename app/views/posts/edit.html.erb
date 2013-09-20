@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+<%= link_to '보기', board_post_path(@board,@post) %> |
+<%= link_to '목록', board_posts_path(@board) %>

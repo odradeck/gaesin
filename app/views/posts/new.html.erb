@@ -1,5 +1,5 @@
-<h1>New post</h1>
+<h1>새로운 글 쓰기 <small><%= @board.title %></small></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', posts_path %>
+<%= link_to '목록', board_posts_path(@board) %>

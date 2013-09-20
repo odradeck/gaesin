@@ -2,8 +2,10 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :board_type %>
+    <%= f.input :title, :input_html=>{:class=>"input-block-level"} %>
+    <%= f.input :board_type, :collection=>%w[gallery ppt general], :input_html=>{:class=>"input-block-level"} %>
+    <%= f.input :description, :input_html=>{:class=>"input-block-level"} %>
+    <%= f.input :show %>
   </div>
 
   

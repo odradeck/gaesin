@@ -1,5 +1,9 @@
 <center><h2>회원정보 수정</h2></center>
 
+<%if current_user.roles_mask %>
+<p> ROLE : <%= current_user.roles.join(",") %></p>
+<%end%>
+
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal' }) do |f| %>
   <%= f.error_notification %>
 

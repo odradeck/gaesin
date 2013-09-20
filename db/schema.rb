@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130916140359) do
+ActiveRecord::Schema.define(:version => 20130919230539) do
 
   create_table "b_categories", :force => true do |t|
     t.string   "name"
@@ -23,10 +23,12 @@ ActiveRecord::Schema.define(:version => 20130916140359) do
     t.string   "title"
     t.integer  "admin_user_id"
     t.integer  "group_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.integer  "roles_mask"
     t.string   "board_type"
+    t.boolean  "show",          :default => false
+    t.string   "description"
   end
 
   create_table "comments", :force => true do |t|
