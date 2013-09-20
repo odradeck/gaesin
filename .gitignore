@@ -15,6 +15,6 @@
 /tmp
 
 # Asset
-/public/assets
-/public/uploads
+/public/assets/
+/public/uploads/
 
