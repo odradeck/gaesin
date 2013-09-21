@@ -1,27 +1,23 @@
-<h1>Listing questions</h1>
+<h1>부끄러운 질문 <br/><small>어디서 물어보기 남사스러웠던 질문과 근거없는 답변들</small> </h1>
 
-<table>
+<table class="table">
   <tr>
-    <th>User</th>
-    <th>Title</th>
-    <th>Contents</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th width="70%">제목</th>
+    <th>질문자</th>
+    <th>날짜</th>
+    <th>답변</th>
   </tr>
 
 <% @questions.each do |question| %>
   <tr>
-    <td><%= question.user_id %></td>
-    <td><%= question.title %></td>
-    <td><%= question.contents %></td>
-    <td><%= link_to 'Show', question %></td>
-    <td><%= link_to 'Edit', edit_question_path(question) %></td>
-    <td><%= link_to 'Destroy', question, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to question.title, question %></td>
+    <td><%= question.user.name %></td>
+    <td><%= question.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+    <td><%= question.comments.count %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Question', new_question_path %>
+<%= link_to '질문 작성하기', new_question_path, :class=>"btn" %>

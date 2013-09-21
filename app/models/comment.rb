@@ -1,3 +1,8 @@
 class Comment < ActiveRecord::Base
-  attr_accessible :contents, :post_id, :user_id
+  attr_accessible :contents, :user_id, :commentable_id, :commentable_type
+
+  belongs_to :user
+  belongs_to :commentable, polymorphic: true
+
+
 end

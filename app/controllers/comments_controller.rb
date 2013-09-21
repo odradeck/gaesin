@@ -43,16 +43,30 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(params[:comment])
+    @comment.user = current_user
+    @comment.save
 
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render json: @comment, status: :created, location: @comment }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
+    if @comment.commentable_type == 'Post'  
+      redirect_to board_post_path(@comment.commentable.board, @comment.commentable)
+    elsif @comment.commentable_type == 'Question'
+      redirect_to @comment.commentable
+    else
+      redirect_to root_path
     end
+
+    
+
+
+    # respond_to do |format|
+    #   if @comment.save
+    #     format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+    #     format.json { render json: @comment, status: :created, location: @comment }
+    #     format.js
+    #   else
+    #     format.html { render action: "new" }
+    #     format.json { render json: @comment.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PUT /comments/1
@@ -75,11 +89,21 @@ class CommentsController < ApplicationController
   # DELETE /comments/1.json
   def destroy
     @comment = Comment.find(params[:id])
+    @commentable = @comment.commentable
     @comment.destroy
 
-    respond_to do |format|
-      format.html { redirect_to comments_url }
-      format.json { head :no_content }
+    if @commentable.class.name == 'Post'  
+      redirect_to board_post_path(@commentable.board, @commentable)
+    elsif @commentable.class.name == 'Question'
+      redirect_to @commentable
+    else
+      redirect_to root_path
     end
+   
+
+    # respond_to do |format|
+    #   format.html { redirect_to comments_url }
+    #   format.json { head :no_content }
+    # end
   end
 end

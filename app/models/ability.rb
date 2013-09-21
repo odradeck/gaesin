@@ -13,8 +13,8 @@ class Ability
       can :create, Post if user.is? :author
       can :crud, Post if user.is? :moderator
 
-      can :create, Question if user.is? :member
-      can :create, Comment if user.is? :member
+      can :create, Question if user.email
+      can :create, Comment if user.email
 
       can :modify, Post, :user_id => user.id
       can :modify, Question, :user_id => user.id

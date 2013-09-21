@@ -21,6 +21,7 @@ class PostsController < ApplicationController
   def show
     @board = Board.find(params[:board_id])
     @post = Post.find(params[:id])
+    @comment = @post.comments.build
 
     respond_to do |format|
       format.html # show.html.erb
@@ -33,6 +34,7 @@ class PostsController < ApplicationController
   def new
     @board = Board.find(params[:board_id])
     @post = Post.new
+
 
     respond_to do |format|
       format.html # new.html.erb

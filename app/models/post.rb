@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
 
   scope :is_published, where(published:true)
   scope :is_draft, where(published:false)
-  has_many :comments
+  has_many :comments, as: :commentable
   belongs_to :board
   belongs_to :user
 end

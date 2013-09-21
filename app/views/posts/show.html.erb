@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h4> <%= @post.title %> <small><%= @board.title %> </small> </h4>
-<p> <small>( <%= @post.user.name %> / <%= @post.created_at.strftime("%Y-%m-%d %H:%M") %> )</small></p>
+ <small>( <%= @post.user.name %> / <%= @post.created_at.strftime("%Y-%m-%d %H:%M") %> )</small>
 <hr/>
 <p>
   <%= markdown @post.contents %>
@@ -17,3 +17,35 @@
   <%= link_to '삭제', board_post_path(@board,@post), confirm: 'Are you sure?', method: :delete %>
 <%end%>
 </div>
+
+<% if can? :create, Comment %>
+<button type="button" class="btn btn-inverse" data-toggle="collapse" data-target="#comments">답글</button>
+<hr/>
+<div id="comments" class="collapse">
+	<%= simple_form_for @comment do |f|%>
+    <%= f.input :contents, :label=>false, :input_html => { :rows => 2, :class=>"input-block-level" }%>
+    <%= f.input :commentable_id, :as => :hidden %>
+    <%= f.input :commentable_type, :as => :hidden %>
+    <div class="pull-right">
+    <%= f.button :submit, "등록" %></div>
+    <%end%>
+  </div>
+<%end%>
+
+
+<% @post.comments.each do |comment| %>
+	<% next unless comment.contents %>
+	<div class="well"%>
+	<%= comment.contents %>
+	<div class="pull-right">
+		<%= "#{comment.user.name} / #{comment.created_at.strftime("%Y-%m-%d %H:%M")}" %>
+		<% if can? :modify, comment %>
+			
+		  	<%= link_to 'X', comment, confirm: 'Are you sure?', method: :delete %>
+		  	
+	  	<%end%>
+	  	</div>
+  	</div>
+<%end%>
+
+

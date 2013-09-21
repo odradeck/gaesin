@@ -1,20 +1,48 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>User:</b>
-  <%= @question.user_id %>
-</p>
+<h4> <%= @question.title %> </h4>
+<div class="pull-right">
+ <small>( <%= @question.user.name if @question.user%> / <%= @question.created_at.strftime("%Y-%m-%d %H:%M") %> )</small></div>
 
 <p>
-  <b>Title:</b>
-  <%= @question.title %>
-</p>
-
-<p>
-  <b>Contents:</b>
-  <%= @question.contents %>
+  <%= markdown @question.contents %>
 </p>
 
 
-<%= link_to 'Edit', edit_question_path(@question) %> |
-<%= link_to 'Back', questions_path %>
+<div class="pull-right">
+<%= link_to '목록', questions_path %>
+<% if can? :modify, @question %>
+  <%= link_to '수정', @question %>
+  <%= link_to '삭제', @question, confirm: 'Are you sure?', method: :delete %>
+<%end%>
+</div>
+
+<% if can? :create, Comment %>
+<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#comments">답변달아주기 </button>
+<hr/>
+<div id="comments" class="collapse">
+	<%= simple_form_for @comment do |f|%>
+    <%= f.input :contents, :label=>false, :input_html => { :rows => 2, :class=>"input-block-level" }%>
+    <%= f.input :commentable_id, :as => :hidden %>
+    <%= f.input :commentable_type, :as => :hidden %>
+    <div class="pull-right">
+    <%= f.button :submit, "친절하게 답변 등록" %></div>
+    <%end%>
+  </div>
+<%end%>
+
+
+<% @question.comments.each do |comment| %>
+	<% next unless comment.contents %>
+	<div class="well"%>
+	<%= comment.contents %>
+	<div class="pull-right">
+		<%= "#{comment.user.name} / #{comment.created_at.strftime("%Y-%m-%d %H:%M")}" %>
+		<% if can? :modify, comment %>
+			
+		  	<%= link_to 'X', comment, confirm: 'Are you sure?', method: :delete %>
+		  	
+	  	<%end%>
+	  	</div>
+  	</div>
+<%end%>
