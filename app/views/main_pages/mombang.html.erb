@@ -16,7 +16,7 @@
 	<br/>
 <h3>개발자인데요 저도 캐피탈리스트로 참여하고 싶습니다.</h3>
 	<p>
-	현명한 선택입니다. 이제까지 을로만 지내던 당신은 이제 '갑'이 되신 것입니다. 거들먹거리며 원하는 비즈니스에 손을 들어주고 코드를 던져주세요. 당신은 이제 SI 외주 업체가 아니라, VC의 투자자니까요. 수시 모집중입니다. 
+	현명한 선택입니다. 이제까지 을로만 지내던 당신은 이제 '갑'이 되신 것입니다. 거들먹거리며 원하는 비즈니스에 손을 들어주고 코드를 던져주세요. 당신은 이제 SI 외주 업체가 아니라, VC의 투자자니까요. 수시 모집중입니다. <a href="#apply_angel" role="button" class="btn btn-primary" data-toggle="modal">신청하기</a>
 	</p>
 	<br/>
 <h3>몸빵투자외 다른 프로그램이나 서비스도 있나요?</h3>
@@ -119,6 +119,32 @@
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
   </div>
 </div>
+
+<div id="apply_angel" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">몸빵투자자로 신청하기</h3>
+  </div>
+   <%= simple_form_for @contact=Contact.new do |f| %>
+  <% if user_signed_in? %>
+  <% @contact.name = current_user.name %>
+  <% @contact.email = current_user.email %>
+  <% end %>
+  <div class="modal-body">
+    <%= f.input :name, :label=>"이름", :input_html=>{:class=>"input-block-level"} %>
+    <%= f.input :email, :label=>"이메일", :input_html=>{:class=>"input-block-level"} %>
+    <%= f.input :contact_type, :as => :hidden, :input_html => { :value => "angel_apply" } %>
+    <%= f.input :body, :label=>"당신의 몸 상태", :input_html => { :rows => 7, :class=>"input-block-level" } %>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <%= f.button :submit, "신청하기", :class=>"btn btn-primary" %>
+  </div>
+  <%end%>
+</div>
+
+
+
 
 </div>
 </div>
