@@ -18,44 +18,44 @@
     <link href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
     <link href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
   </head>
-  <body style="padding-top:0px !important;">
-
-    <div class="navbar-wrapper">
-	   <div class="navbar navbar-fixed-top">
-		  <div class="navbar-inner">
-        <div class="container">
-				<a href="/" class='brand'><img src="/favicon.png">&nbsp;&nbsp;<b>개신</b><small>- 개발은 신속히</small></a>
-				<ul class="nav pull-right" style="text-align:middle;padding-top:10px;">
-					<% if user_signed_in? %>
-	  				<li><%= link_to('로그아웃', destroy_user_session_path, :method => :delete) %></li>
-	  				<li><%= link_to(current_user.name, edit_user_registration_path) %></li>
-	  				<% if current_user.admin? %>
-	  				<li><%= link_to "Admin", "#" %></li>
-	  				<% end %>
-					<% else %>
-          
-		  				<li><a href="/users/auth/facebook"><img src="/facebook_20.png" width="20"></a></li>
-		  				<li> <%= link_to('로그인', new_user_session_path)  %></li>
-		  				<li> <%= link_to('회원가입', new_user_registration_path)  %> </li>
-          <% end %>
-	  		</ul>
-		</div>
-		</div>
-	</div>
-</div>
+  <body>
+    <div class="container navbar-fixed-top" style="background-color:#fff;padding-bottom:20px;">
+      <a href="/" ><img src="/2mz_logo.png"></a>
+    </div>
 		<div class="navbar-wrapper">
-    <div style="margin-top:55px;" class="navbar navbar-fixed-top navbar-inverse">
+    <div style="margin-top:110px;" class="navbar navbar-fixed-top navbar-inverse">
       <div class="navbar-inner">
         <div class="container">							
 				<ul class="nav">
           <% Board.published.each do |board| %>
 					<li><%= link_to board.title, board_posts_path(board)  %></li>
           <%end%>
-          <li><%= link_to "부끄러운질문", questions_path  %></li>
+          <!-- <li><%= link_to "질문과답변", questions_path  %></li> -->
+           <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">이모작?<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">2mozak?</a></li>
+            <li><a href="#">Mission</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Join Us</a></li>
+            <li><a href="#">Level-Up</a></li>
+          </ul>
+        </li>
 				</ul>
 			<ul class="nav pull-right">
-				<li><%= link_to "몸빵캐피탈", mombang_path,:id=>"specialnav" %></li>
-				<li><%= link_to "개신?",    about_path %></li>
+       
+        <% if user_signed_in? %>
+            <li><%= link_to('로그아웃', destroy_user_session_path, :method => :delete) %></li>
+            <li><%= link_to(current_user.name, edit_user_registration_path) %></li>
+            <% if current_user.admin? %>
+            <li><%= link_to "Admin", "#" %></li>
+            <% end %>
+          <% else %>
+          
+              <li><a href="/users/auth/facebook"><img src="/facebook_20.png" width="20"></a></li>
+              <li> <%= link_to('로그인', new_user_session_path)  %></li>
+              <!-- <li> <%= link_to('회원가입', new_user_registration_path)  %> </li> -->
+          <% end %>
  			</ul>
 
           </div><!--/.nav-collapse -->
@@ -63,7 +63,7 @@
       </div>
     </div>
 
-    <div class="container" style="margin-top:110px;">
+    <div class="container" style="margin-top:220px;">
       <% flash.each do |key, value| %>
 			 <div class="alert alert-<%= key %>"><%= value %></div>
 		  <% end %>

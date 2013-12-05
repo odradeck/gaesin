@@ -14,7 +14,7 @@ gem "mini_magick"
 
 gem 'sqlite3'
 gem 'simple_form'
-gem 'devise'
+gem 'devise', '2.2.8'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
