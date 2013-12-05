@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   load_and_authorize_resource
+  skip_authorize_resource :only => [:new, :create]
 
   def index
     @board = Board.find(params[:board_id])
@@ -33,7 +34,14 @@ class PostsController < ApplicationController
   # GET /posts/new.json
   def new
     @board = Board.find(params[:board_id])
-    @post = Post.new
+    @post = @board.posts.build
+    puts "====== new #{@post.board_id}"
+    unless can? :create, @post
+      flash[:alert] = "You are not Authorized"
+      redirect_to board_posts_path(@board)
+      return
+    end
+    
 
 
     respond_to do |format|
@@ -55,6 +63,12 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     @post.board = @board
     @post.user_id = current_user.id
+    unless can? :create, @post
+      flash[:alert] = "You are not Authorized"
+      redirect_to board_posts_path(@board)
+      return
+    end
+    
 
     respond_to do |format|
       if @post.save

@@ -5,6 +5,20 @@
     <%= f.input :title, :input_html=>{:class=>"input-block-level"} %>
     <%= f.input :board_type, :collection=>%w[gallery ppt general], :input_html=>{:class=>"input-block-level"} %>
     <%= f.input :description, :input_html=>{:class=>"input-block-level"} %>
+    <table>
+    	<tr>
+    <% for role in ROLES %>
+    <td>
+  <%= check_box_tag "board[roles][#{role}]", role, @board.roles.include?(role), {:name => "board[roles][]"}%>
+  <%= label_tag "board_roles_#{role}", role.humanize %><br />
+  </td>
+  <td>&nbsp;&nbsp;&nbsp;</td>
+  <% end %>
+</tr>
+</table>
+  <%= hidden_field_tag "board[roles][]", "" %>
+
+
     <%= f.input :show %>
   </div>
 

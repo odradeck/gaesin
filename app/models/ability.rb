@@ -6,11 +6,15 @@ class Ability
     user ||= User.new # guest user (not logged in)
     alias_action :create, :read, :update, :destroy, :to => :crud
     alias_action :update, :destory, :to => :modify
-
     if user.admin?
       can :manage, :all
     elsif user.roles 
-      can :create, Post if user.is? :author
+      #can :create, Post, if user.is? :author
+      can :create, Post do |post|
+        user.roles == post.board.roles
+      end
+
+      #can :create, Post, if user.is? :author
       can :crud, Post if user.is? :moderator
 
       can :create, Question if user.email
@@ -27,8 +31,5 @@ class Ability
       can :read, Comment
       can :read, Question
       can :create, Contact
-    
-    
- 
   end
 end

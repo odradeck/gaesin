@@ -85,6 +85,7 @@
 
 <br />
 
-<% if can? :create, Post %>
+<!--% if can? :create, Post %> -->
+<% if can? :create, @board.posts.build %>
 <%= link_to '새로운 글', new_board_post_path(@board) %>
 <% end %>
