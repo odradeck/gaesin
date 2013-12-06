@@ -36,7 +36,6 @@ class PostsController < ApplicationController
   def new
     @board = Board.find(params[:board_id])
     @post = @board.posts.build
-    puts "====== new #{@post.board_id}"
     unless can? :create, @post
       flash[:alert] = "You are not Authorized"
       redirect_to board_posts_path(@board)
