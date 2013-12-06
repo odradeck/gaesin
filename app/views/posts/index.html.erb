@@ -10,10 +10,10 @@
   <% @posts.each do |post| %>
   <li class="media">
     <a class="pull-left" href='<%=board_post_path(@board, post)%>'>
-      <img class="media-object" src='<%= post.image.thumb.url if post.image %>'></a>
+      <img class="media-object" src='<%= post.image.thumb.url ? post.image.thumb.url : "/thumb_placeholder.png" %>' width="70px"></a>
     <div class="media-body">
       <h4 class="media-heading"><%= link_to post.title, board_post_path(@board, post) %> <small><%= "#{post.user.name} / #{post.created_at.strftime("%Y-%m-%d %H:%M")}" %></small></h4>
-      <%= truncate post.contents, :length=>300  %>
+      <%= truncate post.summary, :length=>300  %>
      </div>
   </li>
   <%end%>
@@ -87,5 +87,6 @@
 
 <!--% if can? :create, Post %> -->
 <% if can? :create, @board.posts.build %>
-<%= link_to '새로운 글', new_board_post_path(@board) %>
+<div class="pull-right">
+<%= link_to '새로운 글', new_board_post_path(@board), :class=>"btn btn-primary" %></div>
 <% end %>

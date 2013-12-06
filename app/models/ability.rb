@@ -11,7 +11,7 @@ class Ability
     elsif user.roles 
       #can :create, Post, if user.is? :author
       can :create, Post do |post|
-        user.roles == post.board.roles
+        (user.roles & post.board.roles).size > 0
       end
 
       #can :create, Post, if user.is? :author

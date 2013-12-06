@@ -17,9 +17,12 @@ class CommentsController < ApplicationController
   def show
     @comment = Comment.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @comment }
+    if @comment.commentable_type == 'Post'  
+      redirect_to board_post_path(@comment.commentable.board, @comment.commentable)
+    elsif @comment.commentable_type == 'Question'
+      redirect_to @comment.commentable
+    else
+      redirect_to root_path
     end
   end
 

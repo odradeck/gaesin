@@ -24,10 +24,9 @@ Gaesin::Application.routes.draw do
   
   get "main_pages/home"
   get "main_pages/about"
-  get "main_pages/help"
-  get "main_pages/terms"
-  get "main_pages/lectures"
-  get "main_pages/mombang"
+  get "main_pages/mission"
+  get "main_pages/joinus"
+  get "main_pages/levelup"
   
   root :to => "main_pages#home"
   
@@ -35,11 +34,10 @@ Gaesin::Application.routes.draw do
   resources :services, :only => [:index, :create, :destroy]
   
   
-  
-  match '/help', to: 'main_pages#help'
   match '/about', to: 'main_pages#about'
-  match '/mombang', to: 'main_pages#mombang'
-  match '/terms', to: 'main_pages#terms'
+  match '/mission', to: 'main_pages#mission'
+  match '/joinus', to: 'main_pages#joinus'
+  match '/levelup', to: 'main_pages#levelup'
   
 
 

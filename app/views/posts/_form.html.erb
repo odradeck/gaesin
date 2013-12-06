@@ -3,6 +3,7 @@
 
   <div class="form-inputs">
     <%= f.input :title, :label=>"제목", :input_html=>{:class=>"input-block-level"} %>
+    <%= f.input :summary, :label=>"요약", :input_html=>{:class=>"input-block-level", :rows => 3} %>
     <%= f.input :contents, :label=>"내용", :input_html=>{:class=>"input-block-level"} %>
     <%= image_tag(@post.image_url) if @post.image? %>
     <%= f.file_field :image %>

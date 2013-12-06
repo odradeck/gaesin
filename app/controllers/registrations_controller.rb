@@ -5,6 +5,12 @@ class RegistrationsController < Devise::RegistrationsController
     email_changed = @user.email != params[:user][:email]
     password_changed = !params[:user][:password].empty?
     
+    if params[:user][:roles]
+      flash[:alert] = "You are not Authorized"
+      redirect_to root_path
+      return
+    end
+
     successfully_updated = if email_changed or password_changed
       @user.update_with_password(params[:user])
       #@user.update_without_password(params[:user])

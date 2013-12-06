@@ -1,7 +1,12 @@
 <p id="notice"><%= notice %></p>
-
-<h4> <%= @post.title %> <small><%= @board.title %> </small> </h4>
- <small>( <%= @post.user.name %> / <%= @post.created_at.strftime("%Y-%m-%d %H:%M") %> )</small>
+<div class="well">
+	<%= @post.summary %>
+</div>
+<center>
+<h1> <%= @post.title %></h1></center>
+<div class="pull-right">
+ <small>( 게시판 : <%= @board.title %> / <%= @post.user.name %> / <%= @post.created_at.strftime("%Y-%m-%d %H:%M") %> )</small></div>
+ <br/>
 <hr/>
 <p>
   <%= markdown @post.contents %>

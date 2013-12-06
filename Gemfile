@@ -5,7 +5,9 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
-gem 'bootstrap-sass', '~> 2.2.2.0'
+#gem 'bootstrap-sass', '~> 2.2.2.0'
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem "twitter-bootstrap-rails"
 gem 'redcarpet'
 gem "mini_magick"
 
@@ -34,6 +36,11 @@ group :assets do
 end
 gem 'therubyracer', :platform => :ruby
 gem 'jquery-rails'
+
+group :development do
+  gem "quiet_assets", ">= 1.0.2"
+  gem "better_errors", ">= 0.7.2"
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
