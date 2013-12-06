@@ -5,7 +5,8 @@ class PostsController < ApplicationController
   def index
     @board = Board.find(params[:board_id])
 
-    @posts = @board.posts.is_published
+    @posts = @board.posts.is_published.paginate(:page => params[:page], :per_page => 10)
+
 
     if user_signed_in?
       @draft_posts = current_user.posts.is_draft.where(board_id:@board.id)
