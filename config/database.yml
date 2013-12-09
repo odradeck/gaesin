@@ -24,4 +24,3 @@ production:
   database: mz_db
   pool: 5
   username: odradeck
-  password: dlwnstmd11
