@@ -42,6 +42,11 @@ group :development do
   gem "better_errors", ">= 0.7.2"
 end
 
+group :production do
+  gem "unicorn", ">= 4.3.1"
+  gem "pg"
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
